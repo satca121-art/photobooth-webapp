@@ -1,0 +1,11 @@
+{
+  "name": "fish-photobooth",
+  "version": "1.0.0",
+  "description": "Fish Photobooth Application",
+  "scripts": {
+    "build": "echo 'Static site - no build needed'",
+    "dev": "echo 'Static site - open index.html in browser'"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
