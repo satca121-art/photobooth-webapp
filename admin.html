@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin - Photo Gallery</title>
+  <link rel="icon" href="Assets/fish-photobooth/favicon.png" type="image/x-icon" />
+  <link rel="stylesheet" href="StyleSheets/admin.css" />
+</head>
+<body>
+  <div class="logo">
+    <img src="Assets/fish-photobooth/logo-new.png" alt="Logo">
+  </div>
+
+  <div class="admin-container">
+    <div class="admin-header">
+      <h1>Photo Gallery</h1>
+      <div class="stats">
+        <span id="photoCount">Loading...</span>
+      </div>
+    </div>
+
+    <div class="controls">
+      <button id="refreshBtn" class="control-btn">Refresh</button>
+      <button id="deleteAllBtn" class="control-btn delete-btn">Delete All</button>
+    </div>
+
+    <div id="loadingMessage" class="loading">Loading photos...</div>
+    <div id="emptyMessage" class="empty-message" style="display: none;">
+      No photos uploaded yet. Photos will appear here when users download from the photobooth.
+    </div>
+
+    <div id="photoGrid" class="photo-grid"></div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script type="module" src="Javascripts/supabase-config.js"></script>
+  <script type="module" src="Javascripts/admin.js"></script>
+  <script type="module">
+    import { supabaseClient } from './Javascripts/supabase-config.js';
+    window.supabaseClient = supabaseClient;
+  </script>
+</body>
+</html>

@@ -111,9 +111,53 @@ addBubbleBtn.addEventListener('click', () => { addSticker(bubbleImages[bubbleInd
 // reset
 resetBtn.addEventListener('click', () => { stickers = []; drawCanvas(); });
 
-// download
-downloadBtn.addEventListener('click', () => {
-  canvas.toBlob(blob => { const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'fish-photobooth.png'; a.click(); }, 'image/png');
+// download and upload to admin
+downloadBtn.addEventListener('click', async () => {
+  downloadBtn.disabled = true;
+  downloadBtn.textContent = 'Processing...';
+
+  canvas.toBlob(async blob => {
+    // Download locally
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'fish-photobooth.png';
+    a.click();
+
+    // Upload to Supabase
+    try {
+      const timestamp = Date.now();
+      const fileName = `photo-${timestamp}.png`;
+      const filePath = `uploads/${fileName}`;
+
+      // Upload to Supabase Storage
+      const { data: uploadData, error: uploadError } = await window.supabaseClient.storage
+        .from('photobooth-photos')
+        .upload(filePath, blob, {
+          contentType: 'image/png',
+          cacheControl: '3600'
+        });
+
+      if (uploadError) throw uploadError;
+
+      // Save metadata to database
+      const { error: dbError } = await window.supabaseClient
+        .from('photos')
+        .insert({
+          file_path: filePath,
+          file_name: fileName,
+          file_size: blob.size
+        });
+
+      if (dbError) throw dbError;
+
+      console.log('Photo uploaded to admin successfully!');
+    } catch (error) {
+      console.error('Error uploading to admin:', error);
+    } finally {
+      downloadBtn.disabled = false;
+      downloadBtn.textContent = 'Download';
+    }
+  }, 'image/png');
 });
 
 // home

@@ -1,0 +1,230 @@
+/* reset and base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #f5f4f0;
+  font-family: Castoro, serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+}
+
+/* logo */
+.logo {
+  width: 80px;
+  margin-bottom: 2rem;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+.logo:hover {
+  transform: scale(1.05);
+}
+
+.logo img {
+  width: 100%;
+  height: auto;
+}
+
+/* admin container */
+.admin-container {
+  width: 100%;
+  max-width: 1400px;
+  padding: 0 1rem;
+}
+
+/* admin header */
+.admin-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.admin-header h1 {
+  color: #555555;
+  font-size: 2.5rem;
+  font-weight: 400;
+  margin-bottom: 0.5rem;
+}
+
+.stats {
+  color: #666;
+  font-size: 1.1rem;
+  margin-top: 0.5rem;
+}
+
+/* controls */
+.controls {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.control-btn {
+  font-family: Castoro, serif;
+  font-size: 1rem;
+  font-weight: 400;
+  color: #1e1e1e;
+  background-color: #fff;
+  border: 1px solid #1e1e1e;
+  border-radius: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+.control-btn:hover {
+  transform: scale(1.05);
+}
+
+.control-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.delete-btn {
+  background-color: #ffebee;
+  border-color: #c62828;
+  color: #c62828;
+}
+
+/* loading and empty states */
+.loading,
+.empty-message {
+  text-align: center;
+  color: #666;
+  font-size: 1.2rem;
+  padding: 3rem;
+}
+
+/* photo grid */
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 768px) {
+  .photo-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* photo card */
+.photo-card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.photo-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* photo wrapper */
+.photo-wrapper {
+  width: 100%;
+  aspect-ratio: 4/5;
+  overflow: hidden;
+  background-color: #f0f0f0;
+}
+
+.photo-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* photo info */
+.photo-info {
+  padding: 1rem;
+}
+
+.photo-details {
+  margin-bottom: 0.75rem;
+}
+
+.photo-date {
+  color: #555;
+  font-size: 0.9rem;
+  margin-bottom: 0.25rem;
+}
+
+.photo-size {
+  color: #888;
+  font-size: 0.85rem;
+}
+
+/* photo actions */
+.photo-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.action-btn {
+  font-family: Castoro, serif;
+  font-size: 0.85rem;
+  font-weight: 400;
+  background-color: #fff;
+  border: 1px solid #1e1e1e;
+  border-radius: 0.4rem;
+  padding: 0.4rem 0.8rem;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out;
+  flex: 1;
+  min-width: 70px;
+}
+
+.action-btn:hover {
+  transform: scale(1.05);
+}
+
+.action-btn.view-btn {
+  background-color: #e3f2fd;
+  border-color: #1976d2;
+  color: #1976d2;
+}
+
+.action-btn.download-btn {
+  background-color: #e8f5e9;
+  border-color: #388e3c;
+  color: #388e3c;
+}
+
+.action-btn.delete-btn {
+  background-color: #ffebee;
+  border-color: #c62828;
+  color: #c62828;
+}
+
+/* responsive adjustments */
+@media (max-width: 480px) {
+  .admin-header h1 {
+    font-size: 2rem;
+  }
+
+  .stats {
+    font-size: 1rem;
+  }
+
+  .controls {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .control-btn {
+    width: 100%;
+  }
+}
